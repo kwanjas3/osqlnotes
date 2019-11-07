@@ -135,3 +135,183 @@ from employees e join employees m
 on (e.manager_id = m.employee_id)
 where e.lastname like 'Lorentz'
 ```
+
+## Self joined can have conditions
+
+```sql
+select e.employeeid, e.lastname, e.departmentid,
+
+d.departmentid, d.locationid
+
+from employees e join departments d
+on (e.departmentid = d.departmentid)
+and e.managerid = 149
+
+
+--- Alternatively where instead of and
+
+select e.employeeid, elastname, e.departmentname,
+d.departmentid, d.locationid
+from employees e join departments d
+on(e.departmentid = d.departmentid)
+where e.managerid = 149
+```
+
+### self join example
+
+using equijoin
+
+```sql
+select m.lastname as manager, w.lastname as Worker
+from employees m, employees w
+where w.managerid = m.employeeid
+order by 1
+
+MANAGER                   WORKER
+------------------------- -------------------------
+De Haan                   Hunold
+Hartstein                 Fay
+Higgins                   Gietz
+Hunold                    Ernst
+Hunold                    Lorentz
+King                      De Haan
+King                      Kochhar
+King                      Hartstein
+King                      Zlotkey
+King                      Mourgos
+Kochhar                   Higgins
+Kochhar                   Whalen
+
+```
+
+### using on
+
+```sql
+select m.lastname as manager, w.lastname as worker
+from employees m, employees w
+on e.managerid = m.employeeid
+order by m.lastname
+
+
+```
+
+## Inner joins
+
+```sql
+select employeeid, lastname, departmentname
+from employees inner join departments
+on employees.departmentid = departments.departmentid
+
+EMPLOYEE_ID LAST_NAME                 DEPARTMENT_NAME
+----------- ------------------------- ----------------
+        200 Whalen                    Administration
+        201 Hartstein                 Marketing
+        202 Fay                       Marketing
+        124 Mourgos                   Shipping
+        141 Rajs                      Shipping
+        142 Davies                    Shipping
+        143 Matos                     Shipping
+        144 Vargas                    Shipping
+        103 Hunold                    IT
+        104 Ernst                     IT
+        107 Lorentz                   IT
+        149 Zlotkey                   Sales
+        174 Abel                      Sales
+        176 Taylor                    Sales
+        100 King                      Executive
+        101 Kochhar                   Executive
+        102 De Haan                   Executive
+        205 Higgins                   Accounting
+        206 Gietz                     Accounting
+
+--Note this looks very like this example which is the implicitly defined join
+
+```
+
+### Showing the total amount of a sales
+
+```sql
+select pname, sum(amount) as TotalSales
+from customers join Orders
+on Customer.pid = orders.pid
+group by pname
+
+
+```
+
+### List all customers and what orders they have placed.
+
+The join is based on finding a value in the joining columns. If no order has been placed then no data will show, but you want all customers
+
+- INNER JOINS
+  The INNER JOIN will select all rows from both tables  as long as there is a match between the columns we are matching on.
+  If a customer has not placed an order or has not placed an order in the time we might specify, then this customer will not be listed as there is no common field.
+
+## Displaying all customers and their sales including customers without sales
+
+### We can use an outer join
+
+There are 3 types of outer joins,
+left, right, full
+
+1. Joins of 2 tables that return only matching rows => inner join
+
+2. Joins between 2 tables that return
+
+- result of inner join
+- any unmatched rows from the left or right tables are called outer join
+
+3. Join between 2 tables that return the result of
+
+- an inner join
+- all results from both left and right of non-matching rows is called full outer join
+
+```sql
+---if you do not state outer join, the default is inner join
+SELECT 	pname,
+		SUM(Amount) AS SalesPerCustomer
+FROM 	Customers LEFT JOIN Orders
+ON 		Customers.pid = orders.pid
+GROUP BY PNAME
+
+--- solves the customers who do not purchase anything
+
+
+```
+
+### more examples
+
+what does this sql statement return?
+
+```sql
+select e.lastname, d.departmentid, d.departmentname
+from employees e full outer join departments d
+on (e.departmentid = d.departmentid)
+
+
+LAST_NAME                 DEPARTMENT_ID DEPARTMENT_NAM
+------------------------- ------------- --------------
+King                                 90 Executive
+Kochhar                              90 Executive
+De Haan                              90 Executive
+Hunold                               60 IT
+Ernst                                60 IT
+Lorentz                              60 IT
+Mourgos                              50 Shipping
+Rajs                                 50 Shipping
+Davies                               50 Shipping
+Matos                                50 Shipping
+Vargas                               50 Shipping
+Zlotkey                              80 Sales
+Abel                                 80 Sales
+Taylor                               80 Sales
+Grant
+Whalen                               10 Administration
+Hartstein                            20 Marketing
+Fay                                  20 Marketing
+Higgins                             110 Accounting
+Gietz                               110 Accounting
+                                    190 Contracting
+--notice grant does not have department
+--notice contracting does not have lastname
+```

@@ -55,11 +55,11 @@ module.exports = {
       {
         text: "L12",
         link: "/Lesson12.html"
-      },
-      {
-        text: "L13",
-        link: "/Lesson13.html"
       }
+      // {
+      //   text: "L13",
+      //   link: "/Lesson13.html"
+      // }
     ],
     sidebar: [
       "/",
@@ -74,8 +74,8 @@ module.exports = {
       "/Lesson9",
       "/Lesson10",
       "/Lesson11",
-      "/Lesson12",
-      "/Lesson13"
+      "/Lesson12"
+      // "/Lesson13"
     ],
     themeConfig: {
       displayAllHeaders: true // Default: false
