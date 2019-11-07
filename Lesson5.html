@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lesson 5 Joining tables | SQL Lessons</title>
+    <meta name="description" content="SQL Lessons">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.6efa0621.css" as="style"><link rel="preload" href="/assets/js/app.5a6969a4.js" as="script"><link rel="preload" href="/assets/js/2.8cd1edd2.js" as="script"><link rel="preload" href="/assets/js/12.466d5af4.js" as="script"><link rel="prefetch" href="/assets/js/10.743b6c37.js"><link rel="prefetch" href="/assets/js/11.a14dc7d4.js"><link rel="prefetch" href="/assets/js/13.e68d3448.js"><link rel="prefetch" href="/assets/js/14.13c5430f.js"><link rel="prefetch" href="/assets/js/15.10c781f9.js"><link rel="prefetch" href="/assets/js/16.ba97c810.js"><link rel="prefetch" href="/assets/js/17.b1ee2921.js"><link rel="prefetch" href="/assets/js/18.15b86135.js"><link rel="prefetch" href="/assets/js/3.666663bc.js"><link rel="prefetch" href="/assets/js/4.688aea8c.js"><link rel="prefetch" href="/assets/js/5.22e3cbc4.js"><link rel="prefetch" href="/assets/js/6.8d98af04.js"><link rel="prefetch" href="/assets/js/7.1154f5cc.js"><link rel="prefetch" href="/assets/js/8.6cd612cd.js"><link rel="prefetch" href="/assets/js/9.7de680e0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6efa0621.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">SQL Lessons</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Summary</a></div><div class="nav-item"><a href="/Lesson1.html" class="nav-link">L1</a></div><div class="nav-item"><a href="/Lesson2.html" class="nav-link">L2</a></div><div class="nav-item"><a href="/Lesson3.html" class="nav-link">L3</a></div><div class="nav-item"><a href="/Lesson4.html" class="nav-link">L4</a></div><div class="nav-item"><a href="/Lesson5.html" class="nav-link router-link-exact-active router-link-active">L5</a></div><div class="nav-item"><a href="/Lesson6.html" class="nav-link">L6</a></div><div class="nav-item"><a href="/Lesson7.html" class="nav-link">L7</a></div><div class="nav-item"><a href="/Lesson8.html" class="nav-link">L8</a></div><div class="nav-item"><a href="/Lesson9.html" class="nav-link">L9</a></div><div class="nav-item"><a href="/Lesson10.html" class="nav-link">L10</a></div><div class="nav-item"><a href="/Lesson11.html" class="nav-link">L11</a></div><div class="nav-item"><a href="/Lesson12.html" class="nav-link">L12</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Summary</a></div><div class="nav-item"><a href="/Lesson1.html" class="nav-link">L1</a></div><div class="nav-item"><a href="/Lesson2.html" class="nav-link">L2</a></div><div class="nav-item"><a href="/Lesson3.html" class="nav-link">L3</a></div><div class="nav-item"><a href="/Lesson4.html" class="nav-link">L4</a></div><div class="nav-item"><a href="/Lesson5.html" class="nav-link router-link-exact-active router-link-active">L5</a></div><div class="nav-item"><a href="/Lesson6.html" class="nav-link">L6</a></div><div class="nav-item"><a href="/Lesson7.html" class="nav-link">L7</a></div><div class="nav-item"><a href="/Lesson8.html" class="nav-link">L8</a></div><div class="nav-item"><a href="/Lesson9.html" class="nav-link">L9</a></div><div class="nav-item"><a href="/Lesson10.html" class="nav-link">L10</a></div><div class="nav-item"><a href="/Lesson11.html" class="nav-link">L11</a></div><div class="nav-item"><a href="/Lesson12.html" class="nav-link">L12</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/" class="sidebar-link">osqlnotes</a></li><li><a href="/Lesson1.html" class="sidebar-link">Lesson 1 Select</a></li><li><a href="/Lesson2.html" class="sidebar-link">Lesson 2 Where</a></li><li><a href="/Lesson3.html" class="sidebar-link">Lesson 3 Single Row Functions</a></li><li><a href="/Lesson4.html" class="sidebar-link">Lesson 4 Group Functions pt.1</a></li><li><a href="/Lesson5.html" class="active sidebar-link">Lesson 5 Joining tables</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/Lesson5.html#example-data" class="sidebar-link">Example Data</a></li><li class="sidebar-sub-header"><a href="/Lesson5.html#three-way-joins" class="sidebar-link">Three way joins</a></li><li class="sidebar-sub-header"><a href="/Lesson5.html#self-joined-can-have-conditions" class="sidebar-link">Self joined can have conditions</a></li><li class="sidebar-sub-header"><a href="/Lesson5.html#inner-joins" class="sidebar-link">Inner joins</a></li><li class="sidebar-sub-header"><a href="/Lesson5.html#displaying-all-customers-and-their-sales-including-customers-without-sales" class="sidebar-link">Displaying all customers and their sales including customers without sales</a></li></ul></li><li><a href="/Lesson6.html" class="sidebar-link">Lesson 6 Using Sub-queries</a></li><li><a href="/Lesson7.html" class="sidebar-link">Lesson 7 Quiz Questions</a></li><li><a href="/Lesson8.html" class="sidebar-link">Lesson 8 Set operators</a></li><li><a href="/Lesson9.html" class="sidebar-link">Lesson 9 DML Manipulating Data</a></li><li><a href="/Lesson10.html" class="sidebar-link">Lesson 10 Create Manage Tables</a></li><li><a href="/Lesson11.html" class="sidebar-link">Lesson 11 Manage Schema Objects - Altering Tables</a></li><li><a href="/Lesson12.html" class="sidebar-link">Lesson 12 Index-Dictionary Views</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="lesson-5-joining-tables"><a href="#lesson-5-joining-tables" class="header-anchor">#</a> Lesson 5 Joining tables</h1> <p>Sometimes you need data from more than one table - possibly because the data has been normalized</p> <ol><li>joining multiple tables</li> <li>joining tables to itself</li> <li>joining tables that do not normally meet a join condition (outer joins)</li></ol> <p>PROBLEM: I want to know how all the programs at Seneca are doing. One of the things I want to look at is the
+(a) program name and
+(b) the number of students enrolled in the program.</p> <h2 id="example-data"><a href="#example-data" class="header-anchor">#</a> Example Data</h2> <table><thead><tr><th style="text-align:center;">ProgramCode</th> <th style="text-align:center;">ProgramDescription</th></tr></thead> <tbody><tr><td style="text-align:center;">ACC</td> <td style="text-align:center;">Accounting</td></tr> <tr><td style="text-align:center;">BUS</td> <td style="text-align:center;">Business</td></tr> <tr><td style="text-align:center;">CPA</td> <td style="text-align:center;">Computer Programming</td></tr> <tr><td style="text-align:center;">MKT</td> <td style="text-align:center;">Marketing</td></tr></tbody></table> <p>Student Data</p> <table><thead><tr><th style="text-align:center;">SID</th> <th style="text-align:center;">NAME &amp; OTHER DATA</th> <th style="text-align:center;">PROGCODE</th></tr></thead> <tbody><tr><td style="text-align:center;">1111</td> <td style="text-align:center;">first</td> <td style="text-align:center;">ACC</td></tr> <tr><td style="text-align:center;">2222</td> <td style="text-align:center;">second</td> <td style="text-align:center;">ACC</td></tr> <tr><td style="text-align:center;">3333</td> <td style="text-align:center;">third</td> <td style="text-align:center;">BUS</td></tr> <tr><td style="text-align:center;">4444</td> <td style="text-align:center;">fourth</td> <td style="text-align:center;">ACC</td></tr> <tr><td style="text-align:center;">5555</td> <td style="text-align:center;">fifth</td> <td style="text-align:center;">MKT</td></tr></tbody></table> <p>Find the common field and join on that</p> <p>equijoin (inner join)</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span>  pname<span class="token punctuation">,</span>
+amount <span class="token keyword">as</span> <span class="token string">&quot;sales per customer&quot;</span>
+<span class="token keyword">from</span> customers<span class="token punctuation">,</span> orders
+<span class="token keyword">where</span> customer<span class="token punctuation">.</span>pid <span class="token operator">=</span> orders<span class="token punctuation">.</span>pid
+</code></pre></div><p>creating joins with USING clause</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> l<span class="token punctuation">.</span>city<span class="token punctuation">,</span> d<span class="token punctuation">.</span>departmentname
+<span class="token keyword">from</span> locations l <span class="token keyword">join</span> departments d <span class="token keyword">using</span> <span class="token punctuation">(</span>locationid<span class="token punctuation">)</span>
+<span class="token keyword">where</span> locationid <span class="token operator">=</span> <span class="token number">1400</span>
+
+<span class="token keyword">SELECT</span> L<span class="token punctuation">.</span>city<span class="token punctuation">,</span> D<span class="token punctuation">.</span>department_name
+		<span class="token keyword">FROM</span> locations L <span class="token keyword">JOIN</span> departments D <span class="token keyword">USING</span> <span class="token punctuation">(</span>location_id<span class="token punctuation">)</span>
+		<span class="token keyword">WHERE</span> D<span class="token punctuation">.</span>location_id <span class="token operator">=</span> <span class="token number">1400</span><span class="token punctuation">;</span>
+			ORA<span class="token operator">-</span><span class="token number">25154</span>: <span class="token keyword">column</span> part <span class="token keyword">of</span> <span class="token keyword">USING</span> clause cannot have qualifier
+</code></pre></div><p>Find the employeeid, name, departmentid, locationid</p> <div class="language-sql extra-class"><pre class="language-sql"><code>seleect e<span class="token punctuation">.</span>employeeid<span class="token punctuation">,</span> e<span class="token punctuation">.</span>lastname<span class="token punctuation">,</span>
+d<span class="token punctuation">.</span>locationid<span class="token punctuation">,</span> d<span class="token punctuation">.</span>departmentid
+<span class="token keyword">from</span> employees <span class="token keyword">join</span> departments <span class="token keyword">using</span> <span class="token punctuation">(</span>departmentid<span class="token punctuation">)</span>
+</code></pre></div><p>Creating joins with the ON clause</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span>
+e<span class="token punctuation">.</span>eid<span class="token punctuation">,</span> e<span class="token punctuation">.</span>lastname<span class="token punctuation">,</span> e<span class="token punctuation">.</span>departmenid<span class="token punctuation">,</span>
+d<span class="token punctuation">.</span>departmentid<span class="token punctuation">,</span> d<span class="token punctuation">.</span>locationid
+<span class="token keyword">from</span> employees e <span class="token keyword">join</span> departments d
+<span class="token keyword">on</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>departmentid <span class="token operator">=</span> d<span class="token punctuation">.</span>departmentid<span class="token punctuation">)</span>
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>notice, there is no where clause, and it seperates the ideas of join and where</p></div> <h2 id="three-way-joins"><a href="#three-way-joins" class="header-anchor">#</a> Three way joins</h2> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> eid<span class="token punctuation">,</span> city<span class="token punctuation">,</span> departmentname<span class="token punctuation">,</span>
+<span class="token keyword">from</span> employees e
+<span class="token keyword">join</span> departments d
+  <span class="token keyword">on</span> d<span class="token punctuation">.</span>departmentid <span class="token operator">=</span> e<span class="token punctuation">.</span>departmentid
+<span class="token keyword">join</span> locations l
+  <span class="token keyword">on</span> d<span class="token punctuation">.</span>locationsid <span class="token operator">=</span> l<span class="token punctuation">.</span>locationsid
+</code></pre></div><p>equijoin version</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> eid<span class="token punctuation">,</span> city<span class="token punctuation">,</span> departmentname
+<span class="token keyword">from</span> employees e<span class="token punctuation">,</span> departments d
+<span class="token keyword">where</span> d<span class="token punctuation">.</span>departmentsid <span class="token operator">=</span> e<span class="token punctuation">.</span>departmentsid
+<span class="token operator">and</span> d<span class="token punctuation">.</span>locationid <span class="token operator">=</span> l<span class="token punctuation">.</span>locationid
+</code></pre></div><p>Find the lastname of lorentz's manager</p> <p>Lorentz and the manager are all employees. there is no need for a manager table</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">TABLE</span>: Employees
+EMPLOYEE_ID LAST_NAME                 MANAGER_ID
+<span class="token comment">----------- ------------------------- ----------</span>
+        <span class="token number">100</span> King
+        <span class="token number">101</span> Kochhar                          <span class="token number">100</span>
+        <span class="token number">102</span> De Haan                          <span class="token number">100</span>
+        <span class="token number">103</span> Hunold                           <span class="token number">102</span>
+        <span class="token number">104</span> Ernst                            <span class="token number">103</span>
+        <span class="token number">107</span> Lorentz                          <span class="token number">103</span>
+        <span class="token number">124</span> Mourgos                          <span class="token number">100</span>
+        <span class="token number">141</span> Rajs                             <span class="token number">124</span>
+        <span class="token number">142</span> Davies                           <span class="token number">124</span>
+        <span class="token number">143</span> Matos                            <span class="token number">124</span>
+        <span class="token number">144</span> Vargas                           <span class="token number">124</span>
+        <span class="token number">149</span> Zlotkey                          <span class="token number">100</span>
+        <span class="token number">174</span> Abel                             <span class="token number">149</span>
+        <span class="token number">176</span> Taylor                           <span class="token number">149</span>
+        <span class="token number">178</span> <span class="token keyword">Grant</span>                            <span class="token number">149</span>
+        <span class="token number">200</span> Whalen                           <span class="token number">101</span>
+        <span class="token number">201</span> Hartstein                        <span class="token number">100</span>
+        <span class="token number">202</span> Fay                              <span class="token number">201</span>
+        <span class="token number">205</span> Higgins                          <span class="token number">101</span>
+        <span class="token number">206</span> Gietz                            <span class="token number">205</span>
+</code></pre></div><p>we can use a self join to solve this</p> <p>look at the manager's id and compare it to employees id.</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> e<span class="token punctuation">.</span>lastname emp<span class="token punctuation">.</span> m<span class="token punctuation">.</span>lastname mgr
+<span class="token keyword">from</span> employees e <span class="token keyword">join</span> employees m
+<span class="token keyword">on</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>manager_id <span class="token operator">=</span> m<span class="token punctuation">.</span>employee_id<span class="token punctuation">)</span>
+<span class="token keyword">where</span> e<span class="token punctuation">.</span>lastname <span class="token operator">like</span> <span class="token string">'Lorentz'</span>
+</code></pre></div><h2 id="self-joined-can-have-conditions"><a href="#self-joined-can-have-conditions" class="header-anchor">#</a> Self joined can have conditions</h2> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> e<span class="token punctuation">.</span>employeeid<span class="token punctuation">,</span> e<span class="token punctuation">.</span>lastname<span class="token punctuation">,</span> e<span class="token punctuation">.</span>departmentid<span class="token punctuation">,</span>
+
+d<span class="token punctuation">.</span>departmentid<span class="token punctuation">,</span> d<span class="token punctuation">.</span>locationid
+
+<span class="token keyword">from</span> employees e <span class="token keyword">join</span> departments d
+<span class="token keyword">on</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>departmentid <span class="token operator">=</span> d<span class="token punctuation">.</span>departmentid<span class="token punctuation">)</span>
+<span class="token operator">and</span> e<span class="token punctuation">.</span>managerid <span class="token operator">=</span> <span class="token number">149</span>
+
+
+<span class="token comment">--- Alternatively where instead of and</span>
+
+<span class="token keyword">select</span> e<span class="token punctuation">.</span>employeeid<span class="token punctuation">,</span> elastname<span class="token punctuation">,</span> e<span class="token punctuation">.</span>departmentname<span class="token punctuation">,</span>
+d<span class="token punctuation">.</span>departmentid<span class="token punctuation">,</span> d<span class="token punctuation">.</span>locationid
+<span class="token keyword">from</span> employees e <span class="token keyword">join</span> departments d
+<span class="token keyword">on</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>departmentid <span class="token operator">=</span> d<span class="token punctuation">.</span>departmentid<span class="token punctuation">)</span>
+<span class="token keyword">where</span> e<span class="token punctuation">.</span>managerid <span class="token operator">=</span> <span class="token number">149</span>
+</code></pre></div><h3 id="self-join-example"><a href="#self-join-example" class="header-anchor">#</a> self join example</h3> <p>using equijoin</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> m<span class="token punctuation">.</span>lastname <span class="token keyword">as</span> manager<span class="token punctuation">,</span> w<span class="token punctuation">.</span>lastname <span class="token keyword">as</span> Worker
+<span class="token keyword">from</span> employees m<span class="token punctuation">,</span> employees w
+<span class="token keyword">where</span> w<span class="token punctuation">.</span>managerid <span class="token operator">=</span> m<span class="token punctuation">.</span>employeeid
+<span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token number">1</span>
+
+MANAGER                   WORKER
+<span class="token comment">------------------------- -------------------------</span>
+De Haan                   Hunold
+Hartstein                 Fay
+Higgins                   Gietz
+Hunold                    Ernst
+Hunold                    Lorentz
+King                      De Haan
+King                      Kochhar
+King                      Hartstein
+King                      Zlotkey
+King                      Mourgos
+Kochhar                   Higgins
+Kochhar                   Whalen
+
+</code></pre></div><h3 id="using-on"><a href="#using-on" class="header-anchor">#</a> using on</h3> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> m<span class="token punctuation">.</span>lastname <span class="token keyword">as</span> manager<span class="token punctuation">,</span> w<span class="token punctuation">.</span>lastname <span class="token keyword">as</span> worker
+<span class="token keyword">from</span> employees m<span class="token punctuation">,</span> employees w
+<span class="token keyword">on</span> e<span class="token punctuation">.</span>managerid <span class="token operator">=</span> m<span class="token punctuation">.</span>employeeid
+<span class="token keyword">order</span> <span class="token keyword">by</span> m<span class="token punctuation">.</span>lastname
+
+
+</code></pre></div><h2 id="inner-joins"><a href="#inner-joins" class="header-anchor">#</a> Inner joins</h2> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> employeeid<span class="token punctuation">,</span> lastname<span class="token punctuation">,</span> departmentname
+<span class="token keyword">from</span> employees <span class="token keyword">inner</span> <span class="token keyword">join</span> departments
+<span class="token keyword">on</span> employees<span class="token punctuation">.</span>departmentid <span class="token operator">=</span> departments<span class="token punctuation">.</span>departmentid
+
+EMPLOYEE_ID LAST_NAME                 DEPARTMENT_NAME
+<span class="token comment">----------- ------------------------- ----------------</span>
+        <span class="token number">200</span> Whalen                    Administration
+        <span class="token number">201</span> Hartstein                 Marketing
+        <span class="token number">202</span> Fay                       Marketing
+        <span class="token number">124</span> Mourgos                   Shipping
+        <span class="token number">141</span> Rajs                      Shipping
+        <span class="token number">142</span> Davies                    Shipping
+        <span class="token number">143</span> Matos                     Shipping
+        <span class="token number">144</span> Vargas                    Shipping
+        <span class="token number">103</span> Hunold                    IT
+        <span class="token number">104</span> Ernst                     IT
+        <span class="token number">107</span> Lorentz                   IT
+        <span class="token number">149</span> Zlotkey                   Sales
+        <span class="token number">174</span> Abel                      Sales
+        <span class="token number">176</span> Taylor                    Sales
+        <span class="token number">100</span> King                      Executive
+        <span class="token number">101</span> Kochhar                   Executive
+        <span class="token number">102</span> De Haan                   Executive
+        <span class="token number">205</span> Higgins                   Accounting
+        <span class="token number">206</span> Gietz                     Accounting
+
+<span class="token comment">--Note this looks very like this example which is the implicitly defined join</span>
+
+</code></pre></div><h3 id="showing-the-total-amount-of-a-sales"><a href="#showing-the-total-amount-of-a-sales" class="header-anchor">#</a> Showing the total amount of a sales</h3> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> pname<span class="token punctuation">,</span> <span class="token function">sum</span><span class="token punctuation">(</span>amount<span class="token punctuation">)</span> <span class="token keyword">as</span> TotalSales
+<span class="token keyword">from</span> customers <span class="token keyword">join</span> Orders
+<span class="token keyword">on</span> Customer<span class="token punctuation">.</span>pid <span class="token operator">=</span> orders<span class="token punctuation">.</span>pid
+<span class="token keyword">group</span> <span class="token keyword">by</span> pname
+
+
+</code></pre></div><h3 id="list-all-customers-and-what-orders-they-have-placed"><a href="#list-all-customers-and-what-orders-they-have-placed" class="header-anchor">#</a> List all customers and what orders they have placed.</h3> <p>The join is based on finding a value in the joining columns. If no order has been placed then no data will show, but you want all customers</p> <ul><li>INNER JOINS
+The INNER JOIN will select all rows from both tables  as long as there is a match between the columns we are matching on.
+If a customer has not placed an order or has not placed an order in the time we might specify, then this customer will not be listed as there is no common field.</li></ul> <h2 id="displaying-all-customers-and-their-sales-including-customers-without-sales"><a href="#displaying-all-customers-and-their-sales-including-customers-without-sales" class="header-anchor">#</a> Displaying all customers and their sales including customers without sales</h2> <h3 id="we-can-use-an-outer-join"><a href="#we-can-use-an-outer-join" class="header-anchor">#</a> We can use an outer join</h3> <p>There are 3 types of outer joins,
+left, right, full</p> <ol><li><p>Joins of 2 tables that return only matching rows =&gt; inner join</p></li> <li><p>Joins between 2 tables that return</p></li></ol> <ul><li>result of inner join</li> <li>any unmatched rows from the left or right tables are called outer join</li></ul> <ol start="3"><li>Join between 2 tables that return the result of</li></ol> <ul><li>an inner join</li> <li>all results from both left and right of non-matching rows is called full outer join</li></ul> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">---if you do not state outer join, the default is inner join</span>
+<span class="token keyword">SELECT</span> 	pname<span class="token punctuation">,</span>
+		<span class="token function">SUM</span><span class="token punctuation">(</span>Amount<span class="token punctuation">)</span> <span class="token keyword">AS</span> SalesPerCustomer
+<span class="token keyword">FROM</span> 	Customers <span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> Orders
+<span class="token keyword">ON</span> 		Customers<span class="token punctuation">.</span>pid <span class="token operator">=</span> orders<span class="token punctuation">.</span>pid
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> PNAME
+
+<span class="token comment">--- solves the customers who do not purchase anything</span>
+
+
+</code></pre></div><h3 id="more-examples"><a href="#more-examples" class="header-anchor">#</a> more examples</h3> <p>what does this sql statement return?</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> e<span class="token punctuation">.</span>lastname<span class="token punctuation">,</span> d<span class="token punctuation">.</span>departmentid<span class="token punctuation">,</span> d<span class="token punctuation">.</span>departmentname
+<span class="token keyword">from</span> employees e <span class="token keyword">full</span> <span class="token keyword">outer</span> <span class="token keyword">join</span> departments d
+<span class="token keyword">on</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>departmentid <span class="token operator">=</span> d<span class="token punctuation">.</span>departmentid<span class="token punctuation">)</span>
+
+
+LAST_NAME                 DEPARTMENT_ID DEPARTMENT_NAM
+<span class="token comment">------------------------- ------------- --------------</span>
+King                                 <span class="token number">90</span> Executive
+Kochhar                              <span class="token number">90</span> Executive
+De Haan                              <span class="token number">90</span> Executive
+Hunold                               <span class="token number">60</span> IT
+Ernst                                <span class="token number">60</span> IT
+Lorentz                              <span class="token number">60</span> IT
+Mourgos                              <span class="token number">50</span> Shipping
+Rajs                                 <span class="token number">50</span> Shipping
+Davies                               <span class="token number">50</span> Shipping
+Matos                                <span class="token number">50</span> Shipping
+Vargas                               <span class="token number">50</span> Shipping
+Zlotkey                              <span class="token number">80</span> Sales
+Abel                                 <span class="token number">80</span> Sales
+Taylor                               <span class="token number">80</span> Sales
+<span class="token keyword">Grant</span>
+Whalen                               <span class="token number">10</span> Administration
+Hartstein                            <span class="token number">20</span> Marketing
+Fay                                  <span class="token number">20</span> Marketing
+Higgins                             <span class="token number">110</span> Accounting
+Gietz                               <span class="token number">110</span> Accounting
+                                    <span class="token number">190</span> Contracting
+<span class="token comment">--notice grant does not have department</span>
+<span class="token comment">--notice contracting does not have lastname</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/Lesson4.html" class="prev">Lesson 4 Group Functions pt.1</a></span> <span class="next"><a href="/Lesson6.html">Lesson 6 Using Sub-queries</a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.5a6969a4.js" defer></script><script src="/assets/js/2.8cd1edd2.js" defer></script><script src="/assets/js/12.466d5af4.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lesson 6 Using Sub-queries | SQL Lessons</title>
+    <meta name="description" content="SQL Lessons">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.6efa0621.css" as="style"><link rel="preload" href="/assets/js/app.5a6969a4.js" as="script"><link rel="preload" href="/assets/js/2.8cd1edd2.js" as="script"><link rel="preload" href="/assets/js/13.e68d3448.js" as="script"><link rel="prefetch" href="/assets/js/10.743b6c37.js"><link rel="prefetch" href="/assets/js/11.a14dc7d4.js"><link rel="prefetch" href="/assets/js/12.466d5af4.js"><link rel="prefetch" href="/assets/js/14.13c5430f.js"><link rel="prefetch" href="/assets/js/15.10c781f9.js"><link rel="prefetch" href="/assets/js/16.ba97c810.js"><link rel="prefetch" href="/assets/js/17.b1ee2921.js"><link rel="prefetch" href="/assets/js/18.15b86135.js"><link rel="prefetch" href="/assets/js/3.666663bc.js"><link rel="prefetch" href="/assets/js/4.688aea8c.js"><link rel="prefetch" href="/assets/js/5.22e3cbc4.js"><link rel="prefetch" href="/assets/js/6.8d98af04.js"><link rel="prefetch" href="/assets/js/7.1154f5cc.js"><link rel="prefetch" href="/assets/js/8.6cd612cd.js"><link rel="prefetch" href="/assets/js/9.7de680e0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6efa0621.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">SQL Lessons</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Summary</a></div><div class="nav-item"><a href="/Lesson1.html" class="nav-link">L1</a></div><div class="nav-item"><a href="/Lesson2.html" class="nav-link">L2</a></div><div class="nav-item"><a href="/Lesson3.html" class="nav-link">L3</a></div><div class="nav-item"><a href="/Lesson4.html" class="nav-link">L4</a></div><div class="nav-item"><a href="/Lesson5.html" class="nav-link">L5</a></div><div class="nav-item"><a href="/Lesson6.html" class="nav-link router-link-exact-active router-link-active">L6</a></div><div class="nav-item"><a href="/Lesson7.html" class="nav-link">L7</a></div><div class="nav-item"><a href="/Lesson8.html" class="nav-link">L8</a></div><div class="nav-item"><a href="/Lesson9.html" class="nav-link">L9</a></div><div class="nav-item"><a href="/Lesson10.html" class="nav-link">L10</a></div><div class="nav-item"><a href="/Lesson11.html" class="nav-link">L11</a></div><div class="nav-item"><a href="/Lesson12.html" class="nav-link">L12</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Summary</a></div><div class="nav-item"><a href="/Lesson1.html" class="nav-link">L1</a></div><div class="nav-item"><a href="/Lesson2.html" class="nav-link">L2</a></div><div class="nav-item"><a href="/Lesson3.html" class="nav-link">L3</a></div><div class="nav-item"><a href="/Lesson4.html" class="nav-link">L4</a></div><div class="nav-item"><a href="/Lesson5.html" class="nav-link">L5</a></div><div class="nav-item"><a href="/Lesson6.html" class="nav-link router-link-exact-active router-link-active">L6</a></div><div class="nav-item"><a href="/Lesson7.html" class="nav-link">L7</a></div><div class="nav-item"><a href="/Lesson8.html" class="nav-link">L8</a></div><div class="nav-item"><a href="/Lesson9.html" class="nav-link">L9</a></div><div class="nav-item"><a href="/Lesson10.html" class="nav-link">L10</a></div><div class="nav-item"><a href="/Lesson11.html" class="nav-link">L11</a></div><div class="nav-item"><a href="/Lesson12.html" class="nav-link">L12</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/" class="sidebar-link">osqlnotes</a></li><li><a href="/Lesson1.html" class="sidebar-link">Lesson 1 Select</a></li><li><a href="/Lesson2.html" class="sidebar-link">Lesson 2 Where</a></li><li><a href="/Lesson3.html" class="sidebar-link">Lesson 3 Single Row Functions</a></li><li><a href="/Lesson4.html" class="sidebar-link">Lesson 4 Group Functions pt.1</a></li><li><a href="/Lesson5.html" class="sidebar-link">Lesson 5 Joining tables</a></li><li><a href="/Lesson6.html" class="active sidebar-link">Lesson 6 Using Sub-queries</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/Lesson6.html#defining-the-proper-question" class="sidebar-link">Defining the proper question</a></li><li class="sidebar-sub-header"><a href="/Lesson6.html#guidelines" class="sidebar-link">Guidelines</a></li><li class="sidebar-sub-header"><a href="/Lesson6.html#examples" class="sidebar-link">Examples</a></li><li class="sidebar-sub-header"><a href="/Lesson6.html#more-examples" class="sidebar-link">more examples</a></li><li class="sidebar-sub-header"><a href="/Lesson6.html#multi-row-subqueries" class="sidebar-link">multi-row subqueries</a></li><li class="sidebar-sub-header"><a href="/Lesson6.html#multi-row-subqueries-cont" class="sidebar-link">multi row subqueries cont.</a></li><li class="sidebar-sub-header"><a href="/Lesson6.html#using-any-operator" class="sidebar-link">using ANY operator</a></li><li class="sidebar-sub-header"><a href="/Lesson6.html#using-all-operator" class="sidebar-link">using ALL operator</a></li><li class="sidebar-sub-header"><a href="/Lesson6.html#example-with-prompt" class="sidebar-link">Example with Prompt</a></li><li class="sidebar-sub-header"><a href="/Lesson6.html#multiple-column-sub-query" class="sidebar-link">Multiple Column sub query</a></li></ul></li><li><a href="/Lesson7.html" class="sidebar-link">Lesson 7 Quiz Questions</a></li><li><a href="/Lesson8.html" class="sidebar-link">Lesson 8 Set operators</a></li><li><a href="/Lesson9.html" class="sidebar-link">Lesson 9 DML Manipulating Data</a></li><li><a href="/Lesson10.html" class="sidebar-link">Lesson 10 Create Manage Tables</a></li><li><a href="/Lesson11.html" class="sidebar-link">Lesson 11 Manage Schema Objects - Altering Tables</a></li><li><a href="/Lesson12.html" class="sidebar-link">Lesson 12 Index-Dictionary Views</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="lesson-6-using-sub-queries"><a href="#lesson-6-using-sub-queries" class="header-anchor">#</a> Lesson 6 Using Sub-queries</h1> <p>Food for thought.</p> <p>Give me a list of all employees that earn more than Haas</p> <h2 id="defining-the-proper-question"><a href="#defining-the-proper-question" class="header-anchor">#</a> Defining the proper question</h2> <h3 id="who-has-a-salary-greater-than-abel"><a href="#who-has-a-salary-greater-than-abel" class="header-anchor">#</a> Who has a salary greater than Abel?</h3> <p>This question require us to know what Abel's salary is</p> <p>Therefore, in order to answer which persons have a greater salary than Abel, we need to know what Abel's salary is.</p> <p>The syntax</p> <div class="language-sql extra-class"><pre class="language-sql"><code>
+<span class="token keyword">select</span>
+<span class="token keyword">from</span>
+<span class="token keyword">where</span> expression <span class="token operator">=</span> <span class="token punctuation">(</span>subquery<span class="token punctuation">)</span>
+
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>remember that multiple row operators use key words like IN, ANY, ALL, EXISTS</p> <p>Subqueries are generally executed first and its output then fed to the main or outer query</p></div> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> lastname <span class="token keyword">from</span> employees
+<span class="token keyword">where</span> salary <span class="token operator">&gt;</span>
+<span class="token punctuation">(</span>
+  <span class="token keyword">select</span> salary <span class="token keyword">from</span> employees <span class="token keyword">where</span> lastname <span class="token operator">=</span> <span class="token string">'Abel'</span>
+<span class="token punctuation">)</span>
+</code></pre></div><h2 id="guidelines"><a href="#guidelines" class="header-anchor">#</a> Guidelines</h2> <p>Generally we:</p> <ul><li>enclose subqueries in parantheses.</li> <li>place subqueries on the right side of the comparison condition</li> <li>order by clause in the subquery is not needed unless you are doing Top-N analysis</li> <li>Use single-row operators with single-row subqueries, use multi-row operators with multi-row subqueries.</li></ul> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">---while you can do this, dont</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">from</span> employees
+<span class="token keyword">WHERE</span> <span class="token punctuation">(</span><span class="token keyword">select</span> salary <span class="token keyword">from</span> employees <span class="token keyword">where</span> last_name <span class="token operator">=</span> <span class="token string">'Abel'</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> salary
+</code></pre></div><h2 id="examples"><a href="#examples" class="header-anchor">#</a> Examples</h2> <p>Display the employees id whose job id is the same as employee 141</p> <div class="language-sql extra-class"><pre class="language-sql"><code>
+<span class="token keyword">select</span> lastname<span class="token punctuation">,</span> jobid <span class="token keyword">from</span> employees
+<span class="token keyword">where</span> jobid <span class="token operator">=</span> <span class="token punctuation">(</span>
+  <span class="token keyword">select</span> jobid <span class="token keyword">from</span> employees <span class="token keyword">where</span> employeeid <span class="token operator">=</span> <span class="token number">141</span>
+<span class="token punctuation">)</span>
+</code></pre></div><p>When you are writing queries, write the inner most to see if what it returns is what you need.</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> lastname<span class="token punctuation">,</span> jobid<span class="token punctuation">,</span> salary <span class="token keyword">from</span> employees
+<span class="token keyword">where</span> jobid <span class="token operator">=</span> <span class="token punctuation">(</span>
+  <span class="token keyword">select</span> jobid <span class="token keyword">from</span> employees <span class="token keyword">where</span> employeeid <span class="token operator">=</span> <span class="token number">141</span>
+<span class="token punctuation">)</span>
+<span class="token operator">and</span> salary <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> salary <span class="token keyword">from</span> employees <span class="token keyword">where</span> employeesid <span class="token operator">=</span> <span class="token number">143</span><span class="token punctuation">)</span>
+
+</code></pre></div><h2 id="more-examples"><a href="#more-examples" class="header-anchor">#</a> more examples</h2> <p>Display the lastname jobid salary of all employees whose salary is = to the min salary of all employees</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> lastname<span class="token punctuation">,</span> jobid<span class="token punctuation">,</span> salary <span class="token keyword">from</span> employees
+<span class="token keyword">where</span>  salary <span class="token operator">=</span>
+<span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">min</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">from</span> employees<span class="token punctuation">)</span>
+</code></pre></div><h2 id="multi-row-subqueries"><a href="#multi-row-subqueries" class="header-anchor">#</a> multi-row subqueries</h2> <p>Display all the departments with min salary greater than department 50's min salary</p> <div class="language-sql extra-class"><pre class="language-sql"><code>
+selet departmentid<span class="token punctuation">,</span> <span class="token function">min</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">from</span> employees
+<span class="token keyword">group</span> <span class="token keyword">by</span> departmentid
+
+<span class="token keyword">having</span> <span class="token function">min</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token operator">&gt;</span>
+<span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">min</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">from</span> employees
+<span class="token keyword">where</span> departmentid <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">)</span>
+</code></pre></div><p>Find the job with th lowest average salary. Display the job id and that average salary</p> <div class="language-sql extra-class"><pre class="language-sql"><code>
+<span class="token keyword">select</span> jobid<span class="token punctuation">,</span> <span class="token function">avg</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">from</span> employees
+<span class="token keyword">group</span> <span class="token keyword">by</span> jobid
+<span class="token keyword">having</span> <span class="token function">avg</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token operator">=</span>
+<span class="token punctuation">(</span>
+<span class="token keyword">select</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token function">avg</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">from</span> employees
+<span class="token keyword">group</span> <span class="token keyword">by</span> jobid
+<span class="token punctuation">)</span>
+
+<span class="token comment">--- alternatively</span>
+
+<span class="token keyword">select</span> jobid<span class="token punctuation">,</span> <span class="token function">avg</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">from</span> employees <span class="token keyword">group</span> <span class="token keyword">by</span> jobid
+<span class="token keyword">where</span> <span class="token function">avg</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token function">avg</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">from</span> employees
+<span class="token keyword">group</span> <span class="token keyword">by</span> jobid<span class="token punctuation">)</span>
+</code></pre></div><p>When you group by there is an implication that there will be multiple rows returned. Therefore, you cannot use where expr = (multi values)</p> <h2 id="multi-row-subqueries-cont"><a href="#multi-row-subqueries-cont" class="header-anchor">#</a> multi row subqueries cont.</h2> <p>To use a subquery that returns more than one row you need to use a multi row operator</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> departmentid<span class="token punctuation">,</span> employeeid<span class="token punctuation">,</span> lastname<span class="token punctuation">,</span> salary <span class="token keyword">from</span> employees
+<span class="token keyword">where</span> salary <span class="token operator">in</span> <span class="token punctuation">(</span>
+
+  <span class="token keyword">select</span> <span class="token function">min</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">from</span> employees
+  <span class="token keyword">group</span> <span class="token keyword">by</span> departmentid
+<span class="token punctuation">)</span>
+</code></pre></div><h2 id="using-any-operator"><a href="#using-any-operator" class="header-anchor">#</a> using ANY operator</h2> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> employeeid<span class="token punctuation">,</span> lastname<span class="token punctuation">,</span> jobid<span class="token punctuation">,</span> salary
+<span class="token keyword">from</span> employees
+<span class="token keyword">where</span> salary <span class="token keyword">any</span><span class="token punctuation">(</span>
+
+  <span class="token keyword">select</span> salary <span class="token keyword">from</span> employees <span class="token keyword">where</span> jobid <span class="token operator">=</span> <span class="token string">'it_prog'</span>
+<span class="token punctuation">)</span>
+<span class="token operator">and</span> jobid <span class="token operator">!=</span> <span class="token string">'it_prog'</span>
+</code></pre></div><h2 id="using-all-operator"><a href="#using-all-operator" class="header-anchor">#</a> using ALL operator</h2> <p>the all operator comapres a value to all values returned by subquery</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> employeeid<span class="token punctuation">,</span> lastname<span class="token punctuation">,</span> jobid<span class="token punctuation">,</span> salary
+<span class="token keyword">from</span> employees
+
+<span class="token keyword">where</span> salary <span class="token operator">&lt;</span> <span class="token keyword">all</span><span class="token punctuation">(</span>
+  <span class="token keyword">select</span> salary <span class="token keyword">from</span> employee
+  <span class="token keyword">where</span> jobid <span class="token operator">=</span> <span class="token string">'it_prog'</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">any</span> jobid <span class="token operator">not</span> <span class="token string">'it_prog'</span>
+
+<span class="token comment">-- checks to see if salary is under the lowest salary returned by subquery</span>
+</code></pre></div><div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p>NOT IN</p> <p>If one of the condition is a NULL value. The entire query returns no rows.
+The problem is the NOT IN. The NOT IN is equivalent to !ALL</p> <p>All conditions that compare a NULL value returns a NULL</p></div> <h3 id="in-works-with-nulls"><a href="#in-works-with-nulls" class="header-anchor">#</a> IN works with NULLS</h3> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> lastname <span class="token keyword">from</span> employees emp
+<span class="token keyword">where</span> emp<span class="token punctuation">.</span>employeeid <span class="token operator">in</span>
+<span class="token punctuation">(</span><span class="token keyword">select</span> mgr<span class="token punctuation">.</span>managerid <span class="token keyword">from</span> employees mgr<span class="token punctuation">)</span>
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">In is equiv to ANY</p> <p>We could have added a where clause in the subquery - where managerid is NOT NULL</p></div> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> lastname <span class="token keyword">from</span> employees emp
+<span class="token keyword">where</span> emp<span class="token punctuation">.</span>employeeid <span class="token operator">in</span>
+
+
+<span class="token punctuation">(</span><span class="token keyword">select</span> mgr<span class="token punctuation">.</span>managerid <span class="token keyword">from</span> employees mgr
+<span class="token keyword">where</span> managerid <span class="token operator">is</span> <span class="token operator">not</span> <span class="token boolean">null</span>
+<span class="token punctuation">)</span>
+</code></pre></div><h2 id="example-with-prompt"><a href="#example-with-prompt" class="header-anchor">#</a> Example with Prompt</h2> <p>Prompt the user for employee last name. The query will return lastname and hiredate of any employee in the same department as the name supplied. Do not include the employee supplied</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> lastname<span class="token punctuation">,</span> departmentid <span class="token keyword">from</span> employees
+<span class="token keyword">where</span> departmentid <span class="token operator">=</span>
+<span class="token punctuation">(</span><span class="token keyword">select</span> departmentid <span class="token keyword">from</span> employees
+<span class="token keyword">where</span> lastname <span class="token operator">=</span> upper<span class="token punctuation">(</span><span class="token string">'&amp;&amp;Name'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">and</span> upper<span class="token punctuation">(</span>lastname<span class="token punctuation">)</span> <span class="token operator">!=</span> upper<span class="token punctuation">(</span><span class="token string">'&amp;Name'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+UNDEFINE NAME<span class="token punctuation">;</span>
+
+</code></pre></div><h2 id="multiple-column-sub-query"><a href="#multiple-column-sub-query" class="header-anchor">#</a> Multiple Column sub query</h2> <p>A multi column subquery returns more than 1 column to the outer query and can be listed in the outer query's from, where or having clause.</p> <p>For example, the below query shows the employee or employees in each department whose current salary is lowest in the department.</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> lastname<span class="token punctuation">,</span> departmentid<span class="token punctuation">,</span> salary
+<span class="token keyword">from</span> employees
+<span class="token keyword">where</span>
+<span class="token punctuation">(</span>departmentid<span class="token punctuation">,</span> salary<span class="token punctuation">)</span> <span class="token operator">in</span> <span class="token punctuation">(</span>
+  <span class="token keyword">select</span> departmentid<span class="token punctuation">,</span> <span class="token function">min</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+  <span class="token keyword">from</span> employees
+  <span class="token keyword">group</span> <span class="token keyword">by</span> departmentid
+<span class="token punctuation">)</span>
+
+
+The sub query <span class="token keyword">returns</span> the <span class="token keyword">following</span>:
+DEPARTMENT_ID <span class="token function">MIN</span><span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span>
+<span class="token comment">------------- -----------</span>
+           <span class="token number">10</span>        <span class="token number">4400</span>
+           <span class="token number">20</span>        <span class="token number">6000</span>
+           <span class="token number">50</span>        <span class="token number">2500</span>
+           <span class="token number">60</span>        <span class="token number">4200</span>
+           <span class="token number">80</span>        <span class="token number">8600</span>
+           <span class="token number">90</span>       <span class="token number">17000</span>
+          <span class="token number">110</span>        <span class="token number">8300</span>
+                     <span class="token number">7000</span>
+
+
+The <span class="token keyword">full</span> query <span class="token keyword">returns</span>
+LAST_NAME                 DEPARTMENT_ID     SALARY
+<span class="token comment">------------------------- ------------- ----------</span>
+Whalen                               <span class="token number">10</span>       <span class="token number">4400</span>
+Fay                                  <span class="token number">20</span>       <span class="token number">6000</span>
+Vargas                               <span class="token number">50</span>       <span class="token number">2500</span>
+Lorentz                              <span class="token number">60</span>       <span class="token number">4200</span>
+Taylor                               <span class="token number">80</span>       <span class="token number">8600</span>
+Kochhar                              <span class="token number">90</span>      <span class="token number">17000</span>
+De Haan                              <span class="token number">90</span>      <span class="token number">17000</span>
+Gietz                               <span class="token number">110</span>       <span class="token number">8300</span>
+
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/Lesson5.html" class="prev">Lesson 5 Joining tables</a></span> <span class="next"><a href="/Lesson7.html">Lesson 7 Quiz Questions</a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.5a6969a4.js" defer></script><script src="/assets/js/2.8cd1edd2.js" defer></script><script src="/assets/js/13.e68d3448.js" defer></script>
+  </body>
+</html>

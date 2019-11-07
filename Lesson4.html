@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lesson 4 Group Functions pt.1 | SQL Lessons</title>
+    <meta name="description" content="SQL Lessons">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.6efa0621.css" as="style"><link rel="preload" href="/assets/js/app.5a6969a4.js" as="script"><link rel="preload" href="/assets/js/2.8cd1edd2.js" as="script"><link rel="preload" href="/assets/js/11.a14dc7d4.js" as="script"><link rel="prefetch" href="/assets/js/10.743b6c37.js"><link rel="prefetch" href="/assets/js/12.466d5af4.js"><link rel="prefetch" href="/assets/js/13.e68d3448.js"><link rel="prefetch" href="/assets/js/14.13c5430f.js"><link rel="prefetch" href="/assets/js/15.10c781f9.js"><link rel="prefetch" href="/assets/js/16.ba97c810.js"><link rel="prefetch" href="/assets/js/17.b1ee2921.js"><link rel="prefetch" href="/assets/js/18.15b86135.js"><link rel="prefetch" href="/assets/js/3.666663bc.js"><link rel="prefetch" href="/assets/js/4.688aea8c.js"><link rel="prefetch" href="/assets/js/5.22e3cbc4.js"><link rel="prefetch" href="/assets/js/6.8d98af04.js"><link rel="prefetch" href="/assets/js/7.1154f5cc.js"><link rel="prefetch" href="/assets/js/8.6cd612cd.js"><link rel="prefetch" href="/assets/js/9.7de680e0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6efa0621.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">SQL Lessons</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Summary</a></div><div class="nav-item"><a href="/Lesson1.html" class="nav-link">L1</a></div><div class="nav-item"><a href="/Lesson2.html" class="nav-link">L2</a></div><div class="nav-item"><a href="/Lesson3.html" class="nav-link">L3</a></div><div class="nav-item"><a href="/Lesson4.html" class="nav-link router-link-exact-active router-link-active">L4</a></div><div class="nav-item"><a href="/Lesson5.html" class="nav-link">L5</a></div><div class="nav-item"><a href="/Lesson6.html" class="nav-link">L6</a></div><div class="nav-item"><a href="/Lesson7.html" class="nav-link">L7</a></div><div class="nav-item"><a href="/Lesson8.html" class="nav-link">L8</a></div><div class="nav-item"><a href="/Lesson9.html" class="nav-link">L9</a></div><div class="nav-item"><a href="/Lesson10.html" class="nav-link">L10</a></div><div class="nav-item"><a href="/Lesson11.html" class="nav-link">L11</a></div><div class="nav-item"><a href="/Lesson12.html" class="nav-link">L12</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Summary</a></div><div class="nav-item"><a href="/Lesson1.html" class="nav-link">L1</a></div><div class="nav-item"><a href="/Lesson2.html" class="nav-link">L2</a></div><div class="nav-item"><a href="/Lesson3.html" class="nav-link">L3</a></div><div class="nav-item"><a href="/Lesson4.html" class="nav-link router-link-exact-active router-link-active">L4</a></div><div class="nav-item"><a href="/Lesson5.html" class="nav-link">L5</a></div><div class="nav-item"><a href="/Lesson6.html" class="nav-link">L6</a></div><div class="nav-item"><a href="/Lesson7.html" class="nav-link">L7</a></div><div class="nav-item"><a href="/Lesson8.html" class="nav-link">L8</a></div><div class="nav-item"><a href="/Lesson9.html" class="nav-link">L9</a></div><div class="nav-item"><a href="/Lesson10.html" class="nav-link">L10</a></div><div class="nav-item"><a href="/Lesson11.html" class="nav-link">L11</a></div><div class="nav-item"><a href="/Lesson12.html" class="nav-link">L12</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/" class="sidebar-link">osqlnotes</a></li><li><a href="/Lesson1.html" class="sidebar-link">Lesson 1 Select</a></li><li><a href="/Lesson2.html" class="sidebar-link">Lesson 2 Where</a></li><li><a href="/Lesson3.html" class="sidebar-link">Lesson 3 Single Row Functions</a></li><li><a href="/Lesson4.html" class="active sidebar-link">Lesson 4 Group Functions pt.1</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/Lesson4.html#list-of-group-functions" class="sidebar-link">list of group functions</a></li><li class="sidebar-sub-header"><a href="/Lesson4.html#group-function-syntax" class="sidebar-link">Group function syntax</a></li><li class="sidebar-sub-header"><a href="/Lesson4.html#guidelines" class="sidebar-link">Guidelines</a></li><li class="sidebar-sub-header"><a href="/Lesson4.html#using-min-max-functions" class="sidebar-link">Using MIN, MAX functions</a></li><li class="sidebar-sub-header"><a href="/Lesson4.html#using-count-function" class="sidebar-link">Using Count function</a></li><li class="sidebar-sub-header"><a href="/Lesson4.html#distinct-examples" class="sidebar-link">Distinct examples</a></li><li class="sidebar-sub-header"><a href="/Lesson4.html#group-functions-and-null" class="sidebar-link">Group functions and null</a></li><li class="sidebar-sub-header"><a href="/Lesson4.html#groups-of-data" class="sidebar-link">Groups of Data</a></li><li class="sidebar-sub-header"><a href="/Lesson4.html#group-by" class="sidebar-link">GROUP BY</a></li><li class="sidebar-sub-header"><a href="/Lesson4.html#grouping-by-more-than-1-column" class="sidebar-link">grouping by more than 1 column</a></li><li class="sidebar-sub-header"><a href="/Lesson4.html#nesting-group-functions" class="sidebar-link">Nesting Group Functions</a></li></ul></li><li><a href="/Lesson5.html" class="sidebar-link">Lesson 5 Joining tables</a></li><li><a href="/Lesson6.html" class="sidebar-link">Lesson 6 Using Sub-queries</a></li><li><a href="/Lesson7.html" class="sidebar-link">Lesson 7 Quiz Questions</a></li><li><a href="/Lesson8.html" class="sidebar-link">Lesson 8 Set operators</a></li><li><a href="/Lesson9.html" class="sidebar-link">Lesson 9 DML Manipulating Data</a></li><li><a href="/Lesson10.html" class="sidebar-link">Lesson 10 Create Manage Tables</a></li><li><a href="/Lesson11.html" class="sidebar-link">Lesson 11 Manage Schema Objects - Altering Tables</a></li><li><a href="/Lesson12.html" class="sidebar-link">Lesson 12 Index-Dictionary Views</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="lesson-4-group-functions-pt-1"><a href="#lesson-4-group-functions-pt-1" class="header-anchor">#</a> Lesson 4 Group Functions pt.1</h1> <p>Group functions:</p> <ul><li>operate on sets of rows</li> <li>returns one result per group</li></ul> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> <span class="token function">avg</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">from</span> employees
+
+<span class="token keyword">returns</span> <span class="token string">'1 number from set of rows'</span>
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">reminder</p> <p>single row functions worked on single rows and returned 1 result per row</p></div> <h2 id="list-of-group-functions"><a href="#list-of-group-functions" class="header-anchor">#</a> list of group functions</h2> <ul><li><p>AVG(n) - average value o fn, ignoring null values 0</p></li> <li><p>COUNT(n) - number of rows where expr evaluates to something other than null
+&amp;&amp; count all selected rows using * includes duplicates and nulls unless you use district</p></li> <li><p>MAX(n) - max value of expr, ignoring null</p></li> <li><p>MIN(n) - min value of expr, ignoring null</p></li> <li><p>SUM(n) - Sums value of n</p></li> <li><p>STDDEV([DISTINCT|ALL]x)
+Standard deviation of n, ignoring null</p></li> <li><p>VARIANCE ([DISTINCT|ALL]x)
+Variance of n, ignoring null values</p></li></ul> <h2 id="group-function-syntax"><a href="#group-function-syntax" class="header-anchor">#</a> Group function syntax</h2> <div class="language-sql extra-class"><pre class="language-sql"><code>
+<span class="token keyword">SELECT</span>     <span class="token function">AVG</span> <span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token function">MAX</span> <span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token function">MIN</span> <span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token function">SUM</span> <span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span>    EMPLOYEES<span class="token punctuation">;</span>
+
+
+
+<span class="token function">AVG</span><span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span> <span class="token function">MAX</span><span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span> <span class="token function">MIN</span><span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span> <span class="token function">SUM</span><span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span>
+       <span class="token number">8775</span>       <span class="token number">24000</span>        <span class="token number">2500</span>      <span class="token number">175500</span>
+
+</code></pre></div><p>For Sales rep only</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">SELECT</span>     <span class="token function">AVG</span> <span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token function">MAX</span> <span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token function">MIN</span> <span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token function">SUM</span> <span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span>    EMPLOYEES
+<span class="token keyword">where</span> jobid <span class="token operator">like</span> <span class="token string">'%REP%'</span>
+</code></pre></div><h2 id="guidelines"><a href="#guidelines" class="header-anchor">#</a> Guidelines</h2> <ul><li><p>Distinct - makes the function only consider non-duplicated values</p></li> <li><p>ALL - makes the function consider all values (default)</p></li> <li><p>The Data types with syntax expr argument may be char, varchar2, number, date</p></li> <li><p>All group functions ignore null values. To substitude null use NVL(column, n)</p></li></ul> <h2 id="using-min-max-functions"><a href="#using-min-max-functions" class="header-anchor">#</a> Using MIN, MAX functions</h2> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>you can use MIN and MAX for numeric, character and dates</p></div> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span>
+<span class="token function">min</span><span class="token punctuation">(</span>hiredate<span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token string">&quot;most senior&quot;</span><span class="token punctuation">,</span>
+<span class="token function">max</span><span class="token punctuation">(</span>hiredate<span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token string">&quot;newest employee&quot;</span><span class="token punctuation">,</span>
+<span class="token keyword">from</span> employees
+</code></pre></div><h2 id="using-count-function"><a href="#using-count-function" class="header-anchor">#</a> Using Count function</h2> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">from</span> employee
+
+<span class="token keyword">returns</span> <span class="token string">'count of rows in table'</span>
+</code></pre></div><p>Inside an expression</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span>commission_pct<span class="token punctuation">)</span> <span class="token keyword">from</span> employees
+<span class="token keyword">where</span> departmentid<span class="token operator">=</span><span class="token number">80</span>
+</code></pre></div><div class="custom-block warning"><p class="custom-block-title">Note</p> <p>Count the number of rows that satisfies the select statement</p> <p>adding an expressino returns non-null values</p> <p>adding distinct returns the number of rows that are distinct from all the rows that are not null</p></div> <h2 id="distinct-examples"><a href="#distinct-examples" class="header-anchor">#</a> Distinct examples</h2> <div class="language-sql extra-class"><pre class="language-sql"><code>
+<span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> departmentid<span class="token punctuation">)</span>
+<span class="token keyword">from</span> employees
+
+<span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> departmentid<span class="token punctuation">)</span>
+</code></pre></div><h2 id="group-functions-and-null"><a href="#group-functions-and-null" class="header-anchor">#</a> Group functions and null</h2> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> <span class="token function">avg</span><span class="token punctuation">(</span>commissionpct<span class="token punctuation">)</span>
+<span class="token keyword">from</span> employees
+
+<span class="token string">&quot;returns .2125 since it ignores nulls&quot;</span>
+
+<span class="token keyword">select</span> <span class="token function">avg</span><span class="token punctuation">(</span>nvl<span class="token punctuation">(</span>commissionpct<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">from</span> employees
+
+<span class="token string">'nulls are considered value of 0'</span>
+
+<span class="token string">'returns .0425'</span>
+</code></pre></div><h2 id="groups-of-data"><a href="#groups-of-data" class="header-anchor">#</a> Groups of Data</h2> <p>All group functions have treated that table as one large group, but sometimes the information needs to be divided into smaller groups</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> departmentid<span class="token punctuation">,</span> <span class="token function">avg</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">from</span> employees
+
+<span class="token string">'returns
+ERROR at line 1:
+ORA-00937: not a single-group group function
+'</span>
+</code></pre></div><p>The use of departmentid results in a row of outputs for each row in the employee table</p> <p>AVG wants to output a single resuilt for the entire table</p> <p>therefore we can use the keyword</p> <p>GROUP BY</p> <h2 id="group-by"><a href="#group-by" class="header-anchor">#</a> GROUP BY</h2> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> departmentid<span class="token punctuation">,</span>
+<span class="token function">avg</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">from</span> employees
+<span class="token keyword">group</span> <span class="token keyword">by</span> departmentid
+
+
+DEPARTMENT_ID <span class="token function">AVG</span><span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span>
+<span class="token comment">------------- -----------</span>
+                     <span class="token number">7000</span>
+           <span class="token number">90</span>  <span class="token number">19333.3333</span>
+           <span class="token number">20</span>        <span class="token number">9500</span>
+          <span class="token number">110</span>       <span class="token number">10150</span>
+           <span class="token number">50</span>        <span class="token number">3500</span>
+           <span class="token number">80</span>  <span class="token number">10033.3333</span>
+           <span class="token number">60</span>        <span class="token number">6400</span>
+           <span class="token number">10</span>        <span class="token number">4400</span>
+
+</code></pre></div><p>Group by does not need to be in the select statement</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> <span class="token function">avg</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">from</span> employees
+<span class="token keyword">group</span> <span class="token keyword">by</span> departmentid
+
+<span class="token function">AVG</span><span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span>
+<span class="token comment">-----------</span>
+       <span class="token number">7000</span>
+ <span class="token number">19333.3333</span>
+       <span class="token number">9500</span>
+      <span class="token number">10150</span>
+       <span class="token number">3500</span>
+ <span class="token number">10033.3333</span>
+       <span class="token number">6400</span>
+       <span class="token number">4400</span>
+
+</code></pre></div><p>incorporate it with order by</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> departmentid<span class="token punctuation">,</span> average<span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token keyword">from</span> employees
+<span class="token keyword">group</span> <span class="token keyword">by</span> departmentid
+<span class="token keyword">order</span> <span class="token keyword">by</span> departmentid <span class="token keyword">desc</span>
+</code></pre></div><h2 id="grouping-by-more-than-1-column"><a href="#grouping-by-more-than-1-column" class="header-anchor">#</a> grouping by more than 1 column</h2> <p>display the total salary paid to each job title within each department</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> departmentid<span class="token punctuation">,</span> jobid<span class="token punctuation">,</span> <span class="token function">sum</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">from</span> employees
+<span class="token keyword">group</span> <span class="token keyword">by</span> departmentid<span class="token punctuation">,</span> jobid
+
+DEPARTMENT_ID JOB_ID     <span class="token function">SUM</span><span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span>
+<span class="token comment">------------- ---------- -----------</span>
+          <span class="token number">110</span> AC_ACCOUNT        <span class="token number">8300</span>
+           <span class="token number">90</span> AD_VP            <span class="token number">34000</span>
+           <span class="token number">50</span> ST_CLERK         <span class="token number">11700</span>
+           <span class="token number">80</span> SA_REP           <span class="token number">19600</span>
+           <span class="token number">50</span> ST_MAN            <span class="token number">5800</span>
+           <span class="token number">80</span> SA_MAN           <span class="token number">10500</span>
+          <span class="token number">110</span> AC_MGR           <span class="token number">12000</span>
+           <span class="token number">90</span> AD_PRES          <span class="token number">24000</span>
+           <span class="token number">60</span> IT_PROG          <span class="token number">19200</span>
+           <span class="token number">20</span> MK_MAN           <span class="token number">13000</span>
+              SA_REP            <span class="token number">7000</span>
+           <span class="token number">10</span> AD_ASST           <span class="token number">4400</span>
+           <span class="token number">20</span> MK_REP            <span class="token number">6000</span>
+
+
+</code></pre></div><p>Restricting which groups to show</p> <p>Find the max salary by department if max salary is greater than 10000</p> <div class="language-sql extra-class"><pre class="language-sql"><code>
+<span class="token keyword">select</span> departmentid<span class="token punctuation">,</span> <span class="token function">max</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">from</span> employees
+<span class="token keyword">where</span> <span class="token function">max</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">10000</span>
+<span class="token keyword">group</span> <span class="token keyword">by</span> departmentid
+
+</code></pre></div><h2 id="nesting-group-functions"><a href="#nesting-group-functions" class="header-anchor">#</a> Nesting Group Functions</h2> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token function">avg</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">from</span> employees
+<span class="token keyword">group</span> <span class="token keyword">by</span> departmentid
+
+<span class="token function">MAX</span><span class="token punctuation">(</span><span class="token function">AVG</span><span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">----------------</span>
+      <span class="token number">19333.3333</span>
+
+</code></pre></div><p>examples</p> <p>Write a query to determine how many job_ids there are</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> <span class="token keyword">distinct</span> job_id
+<span class="token keyword">from</span> employees
+</code></pre></div><p>write a query to find out how many people have the same job</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span>firstname<span class="token punctuation">)</span>
+<span class="token keyword">from</span> employees
+<span class="token keyword">where</span> <span class="token function">count</span><span class="token punctuation">(</span>job_id<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">1</span>
+<span class="token keyword">group</span> <span class="token keyword">by</span> job_id
+</code></pre></div><div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">SELECT</span> column_name<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> table_name
+<span class="token keyword">WHERE</span> condition
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> column_name<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token keyword">HAVING</span> condition
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> column_name<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/Lesson3.html" class="prev">Lesson 3 Single Row Functions</a></span> <span class="next"><a href="/Lesson5.html">Lesson 5 Joining tables</a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.5a6969a4.js" defer></script><script src="/assets/js/2.8cd1edd2.js" defer></script><script src="/assets/js/11.a14dc7d4.js" defer></script>
+  </body>
+</html>
